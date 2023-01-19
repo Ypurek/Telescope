@@ -82,7 +82,9 @@ function telescopeAlgo(dataList) {
     modules.prime = isPrime(data.index);
     modules.seti = isSequenceData(dataList);
     modules.axe =  (key === '3') ? (isMod7(data.index) && !isMod3(data.index)) : isMod7(data.index);
-    modules.anom = (isMod7(data.index) && isMod3(data.index)) || ((data.index < (key === '2') ? 11 : 10) || data.index > 90);
+    let le = (key === '2') ? 11 : 10;
+    console.info(le);
+    modules.anom = (isMod7(data.index) && isMod3(data.index)) || ((data.index < ((key === '2') ? 11 : 10)) || data.index > 90);
     modules.trash = modules.anom || modules.prime || modules.seti || modules.axe;
     return modules;
 }
