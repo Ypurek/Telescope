@@ -1,0 +1,61 @@
+* {border:medium none; margin:0; padding:0;}
+*:hover, *:active, *:focus {outline:none !important;}
+html {height:100%;}
+body {background:#fff; height:100%; color:#000; font:normal 16px Arial,Helvetica,sans-serif; display:flex; flex-direction:column;}
+
+div {-moz-box-sizing:border-box; box-sizing:border-box; float:none;}
+table {border-spacing:0; padding:0;}
+a {color:#000; outline:medium none; text-decoration:none;}
+a:hover, a:active, a:focus {color:inherit; text-decoration:none;}
+
+input, textarea {font-family:Arial,serif;}
+input {padding:5px; border:1px solid #000;}
+textarea {padding:10px; border:1px solid #000; font-size:16px;}
+button {background:#e0e0e0; padding:5px; font-family:Arial,serif; border:1px solid #e0e0e0; display:inline-block; vertical-align:top; cursor:pointer; white-space:nowrap;}
+
+.bodyWrap {width:100%; max-width:768px; padding:15px; margin:0 auto;}
+.dataTable {display:flex; flex-flow:row wrap; justify-content:stretch;}
+
+.realData {width:100%; padding:0 0 20px; display:flex; flex-flow:row nowrap; justify-content:stretch; align-items:center;}
+.realDataForm {padding:0 15px 0 0; display:flex; flex-flow:row nowrap; align-items:center; flex-grow:1;}
+.realDataForm label {padding:0 10px 0 0;}
+.realDataForm input {width:84px;}
+@media(min-width:768px){
+	.realData {width:auto; padding:0 30px 20px 0;}
+}
+
+.testData {padding:0 0 20px 0; display:flex; flex-flow:row nowrap; justify-content:stretch; align-items:center; flex-grow:1;}
+.testData .tdLabel + .tdLabel {padding:10px 0 0;}
+.testData label {min-width:60px; display:inline-block;}
+.testDataForm {padding:0 15px 0 0; flex-grow:1;}
+.tdLabel {display:flex; flex-flow:row nowrap; justify-content:stretch; align-items:center;}
+.tdLabel input {flex-grow:1;}
+
+.flexWrap {padding:0 0 30px;}
+@media(min-width:768px){
+	.logInfo {padding:0 0 0 30px;}
+	.flexWrap {display:flex; flex-flow:row nowrap; justify-content:stretch;}
+	.logInfo {flex-grow:1; display:flex; flex-flow:column nowrap; justify-content:stretch;}
+}
+
+.operativeWrap {padding:0; border:1px solid #000; border-bottom:0;}
+.dataBlock {padding:10px; border-bottom:1px solid #000;}
+.dataBlock label {padding:5px 0 0; display:block;}
+.indexLabel {font-weight:700;}
+@media(min-width:768px){
+	.operativeWrap {min-width:307px;}
+}
+
+.logicModuleWrap {padding:15px 0 0; display:flex; flex-flow:row nowrap; justify-content:stretch;}
+.logicModuleWrap .module {padding:10px; text-align:center; flex-grow:1;}
+.anomalyModule {background-color: lightcoral;}
+.primeModule {background-color: lightgreen;}
+.setiModule {background-color: skyblue;}
+.axeModule {background-color: lightsalmon;}
+.logWrap {max-height:200px; overflow-y:scroll; margin:15px 0 0; flex-grow:1;}
+.logWrap p {padding: 5px}
+.logWrap p:nth-child(even) {background: #eaeaea}
+@media(min-width:768px){
+	.logicModuleWrap {padding:0;}
+	.logWrap textarea {height:100%;}
+}

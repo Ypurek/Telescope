@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>Телескоп</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="static/script.js"></script>
+    <script type="text/javascript" src="static/js.cookie.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+
+<body>
+<div class="bodyWrap">
+    <div class="dataTable">
+        <div class="realData">
+            <div class="realDataForm">
+                <label>затримка, мс</label>
+                <input type="number" class="inputDelay" value="1000" min="1000">
+            </div>
+            <div class="realDataBtn">
+                <button class="getTelescopeData" onclick="togleTelescopeData()">Отримати дані</button>
+            </div>
+        </div>
+        <div class="testData">
+            <div class="testDataForm">
+                <div class="tdLabel">
+                    <label>індекс</label>
+                    <input type="text" class="testIndex" min="0" max="100">
+                </div>
+                <div class="tdLabel">
+                    <label>дані</label>
+                    <input type="text" class="dataInput">
+                </div>
+            </div>
+            <div class="testDataBtn">
+                <button class="sendTestData" onclick="sendTestData()">Тест</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flexWrap">
+        <div class="operativeWrap">
+            <div class="dataBlock">
+                <label class="indexlabel">індекс: 42</label>
+                <label>номер: 1</label>
+                <label>дані: TESTTESTTEST</label>
+            </div>
+            <div class="dataBlock">
+                <label class="indexlabel">індекс: 17</label>
+                <label>номер: 2</label>
+                <label>дані: TESTTESTTEST</label>
+            </div>
+            <div class="dataBlock">
+                <label class="indexlabel">індекс: 88</label>
+                <label>номер: 3</label>
+                <label>дані: TESTTESTTEST</label>
+            </div>
+        </div>
+        <div class="logInfo">
+            <div class="logicModuleWrap">
+                <div class="module anomalyModule">
+                    <p>аномалії</p>
+                    <p class="anomalyCount">0</p>
+                </div>
+                <div class="module primeModule">
+                    <p>prime</p>
+                    <p class="primeCount">0</p>
+                </div>
+                <div class="module setiModule">
+                    <p>SETI</p>
+                    <p class="setiCount">0</p>
+                </div>
+                <div class="module axeModule">
+                    <p>3-AXE</p>
+                    <p class="axeCount">0</p>
+                </div>
+            </div>
+            <div class="logWrap">
+                <p>блок даних 1674152150190 з індексом 47 було направлено в модулі: аномалій, 3-AXE</p>
+                <p>блок даних 1674152150191 з індексом 29 було направлено в модулі: 3-AXE</p>
+                <p>блок даних 1674152150192 з індексом 12 було направлено в модулі: аномалій, 3-AXE</p>
+                <!--textarea class="logArea" readonly></textarea-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
