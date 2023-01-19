@@ -2,13 +2,14 @@ from flask import Flask, make_response, request
 import uuid
 import random as r
 import requests
+import os
 
 app = Flask(__name__,
             static_url_path='/static',
             static_folder='static')
 application = app
 
-GOOGLE_SCRIPT = ''
+GOOGLE_SCRIPT = '' if os.environ.get('GOOGLE_SCRIPT') is None else os.environ.get('GOOGLE_SCRIPT')
 
 
 @app.route('/')
