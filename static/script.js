@@ -11,6 +11,8 @@ function setup() {
     let uuid = Cookies.get('uuid');
     key = Cookies.get('key');
     console.debug('setup is done');
+    let uuidElement = document.querySelector('.uuid');
+    uuidElement.innerHTML = uuid;
 }
 window.onload = setup;
 
