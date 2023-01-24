@@ -12,7 +12,7 @@ function setup() {
     key = Cookies.get('key');
     console.debug('setup is done');
     let uuidElement = document.querySelector('.uuid');
-    uuidElement.innerHTML = uuid;
+    uuidElement.innerHTML = uuid+key;
 }
 window.onload = setup;
 
@@ -69,9 +69,9 @@ const isMod7 = num => num % 7 === 0;
 const isMod3 = num => num % 3 === 0;
 
 const isSequenceData = arr => {
-    if (arr.length == 3) {
-        return ((arr[0].index == arr[1].index - 1) && (arr[0].index == arr[2].index - 2)) ||
-            ((arr[0].index == arr[1].index + 1) && (arr[0].index == arr[2].index + 2));
+    if (arr.length === 3) {
+        return ((arr[0].index === arr[1].index - 1) && (arr[0].index === arr[2].index - 2)) ||
+            ((arr[0].index === arr[1].index + 1) && (arr[0].index === arr[2].index + 2));
     }
     return false;
 }
@@ -111,7 +111,6 @@ function handleModules(modules, dataList) {
         let num = parseInt(count.textContent);
         count.textContent = num + 1;
     }
-    let logArea = document.querySelector('.logArea');
     let logRecord = '';
     if (!modules.trash) {
         logRecord = `блок даних ${data.id} з індексом ${data.index} не містить жодної корисної інформації для науки`
@@ -123,7 +122,7 @@ function handleModules(modules, dataList) {
     console.info(logRecord);
     if (modules.seti && !(key === '4')) {
         let recordAdd = `блоки даних ${dataList[0].id} та ${dataList[1].id} також направлені в модуль SETI`;
-        logArea.value += recordAdd;
+        addLogRecord(recordAdd);
         console.info(recordAdd);
     }
 }
