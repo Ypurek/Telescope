@@ -3,6 +3,7 @@
 var isTelescopeOfline = false;
 var firstRun = true;
 var DATA_BLOCK_LIST = [{}, {}, {}];
+var PREV_SET = false;
 var key = 0;
 
 console.info('123')
@@ -12,8 +13,9 @@ function setup() {
     key = Cookies.get('key');
     console.debug('setup is done');
     let uuidElement = document.querySelector('.uuid');
-    uuidElement.innerHTML = uuid+key;
+    uuidElement.innerHTML = uuid + key;
 }
+
 window.onload = setup;
 
 function setDataBlock(data) {
@@ -59,7 +61,7 @@ function removeExtraDataBlock() {
 
 // https://stackoverflow.com/questions/40200089/check-number-prime-in-javascript
 const isPrime = num => {
-    if (key === '1' && num === 1)  return true;
+    if (key === '1' && num === 1) return true;
     for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
         if (num % i === 0) return false;
     }
@@ -67,6 +69,7 @@ const isPrime = num => {
 }
 const isMod7 = num => num % 7 === 0;
 const isMod3 = num => num % 3 === 0;
+const isOk = num => Number.isInteger(num) && (num >= 0) && (num <= 100);
 
 const isSequenceData = arr => {
     if (arr.length === 3) {
@@ -78,10 +81,13 @@ const isSequenceData = arr => {
 
 function telescopeAlgo(dataList) {
     let data = dataList.at(-1);
-    let modules = { anom: false, prime: false, seti: false, axe: false, trash: false };
+    let modules = {anom: false, prime: false, seti: false, axe: false, trash: false};
+    if (!isOk(data.index)) {
+        return modules;
+    }
     modules.prime = isPrime(data.index);
     modules.seti = isSequenceData(dataList);
-    modules.axe =  (key === '3') ? (isMod7(data.index) && !isMod3(data.index)) : isMod7(data.index);
+    modules.axe = (key === '3') ? (isMod7(data.index) && !isMod3(data.index)) : isMod7(data.index);
     let le = (key === '2') ? 11 : 10;
     console.info(le);
     modules.anom = (isMod7(data.index) && isMod3(data.index)) || ((data.index < ((key === '2') ? 11 : 10)) || data.index > 90);
@@ -104,7 +110,13 @@ function handleModules(modules, dataList) {
     if (modules.seti) {
         let count = document.querySelector('.setiCount');
         let num = parseInt(count.textContent);
-        count.textContent = num + 3;
+        if (PREV_SET) {
+            count.textContent = num + 1;
+        } else {
+            count.textContent = num + 3;
+        }
+    } else {
+        PREV_SET = false;
     }
     if (modules.axe) {
         let count = document.querySelector('.axeCount');
@@ -117,11 +129,12 @@ function handleModules(modules, dataList) {
     } else {
         logRecord = `блок даних ${data.id} з індексом ${data.index} було направлено в модулі: ${modules.anom ? 'аномалій, ' : ''}${modules.prime ? 'prime, ' : ''}${modules.seti ? 'SETI, ' : ''}${modules.axe ? '3-AXE' : ''}\r\n`;
     }
-    // logArea.value += logRecord;
+
     addLogRecord(logRecord);
     console.info(logRecord);
-    if (modules.seti && !(key === '4')) {
+    if (modules.seti && !(key === '4') && !PREV_SET) {
         let recordAdd = `блоки даних ${dataList[0].id} та ${dataList[1].id} також направлені в модуль SETI`;
+        PREV_SET = true;
         addLogRecord(recordAdd);
         console.info(recordAdd);
     }
@@ -157,9 +170,9 @@ async function getTelescopeData(delay) {
     }
 }
 
-function togleTelescopeData(){
+function togleTelescopeData() {
     let btn = document.querySelector('.getTelescopeData');
-    if (isTelescopeOfline || firstRun){
+    if (isTelescopeOfline || firstRun) {
         console.info('telescope on');
         firstRun = false;
         isTelescopeOfline = false;
